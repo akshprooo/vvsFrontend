@@ -47,7 +47,7 @@ const Footer = () => {
             <h3 className="text-lg sm:text-xl font-semibold text-blue-400 mb-4">Info</h3>
             <ul className="space-y-2">
               <li>
-                <a href="https://github.com/akshprooo" className="text-sm sm:text-base text-white/80 hover:text-blue-400 transition-colors duration-200">
+                <a href="https://github.com/akshprooo/vvsFrontend" className="text-sm sm:text-base text-white/80 hover:text-blue-400 transition-colors duration-200">
                   About This Project
                 </a>
               </li>
