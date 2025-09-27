@@ -37,7 +37,7 @@ const Login = () => {
         // Update user context
         setUser(result.user);
         // Navigate to dashboard instead of login!
-        navigate('/dashboard'); // ✅ Fixed: Go to dashboard
+        navigate('/dashboard');
       } else {
         alert(result.message);
       }

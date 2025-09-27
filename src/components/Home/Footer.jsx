@@ -71,7 +71,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <div className="text-center sm:text-left">
             <p className="text-xs sm:text-sm text-white/70">
-              © {new Date().getFullYear()} Virtual Voting System — Built by Aksh.
+              © {new Date().getFullYear()} Virtual Voting System — Built by <a href="https://akshprooo.vercel.app">Aksh Tiwari</a>.
             </p>
             <p className="text-xs text-white/60 mt-1">
               Exploring secure digital voting through code & design.
