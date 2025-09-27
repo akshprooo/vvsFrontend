@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useUserContext } from '../../context/UserContext'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -8,6 +9,8 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const { user } = useUserContext();
+
   return (
     <header className={`z-50 w-full h-20 justify-between bg-zinc-300 flex items-center p-7 relative ${isMenuOpen?'':'border-blue-500 border-b-1'}`}>
         <h2 className='text-xl sm:text-2xl lg:text-3xl font-semibold'>Virtual Voting System</h2>
@@ -15,8 +18,10 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <nav className='hidden md:flex items-center gap-3'>
             {[{name:'Home', link:'/'}, {name:'Login', link:'/login'}, {name:'Vote Now', link:'/vote'}].map((item,idx)=>{
-                if (item.name != 'Vote Now'){
+                if (item.name != 'Vote Now' && item.name != 'Login'){
                     return <Link key={idx} to={item.link} className='bg-zinc-600 text-white px-4 py-2 rounded-md border-2 border-blue-500 border-b-2 hover:border-b-0 hover:border-t-4 border-r-0 border-l-0'>{item.name}</Link>
+                }else if(user.loggedin && item.name === 'Login'){
+                    return <Link key={idx} to={item.link} className='bg-zinc-600 text-white px-4 py-2 rounded-md border-2 border-blue-500 border-b-2 hover:border-b-0 hover:border-t-4 border-r-0 border-l-0'>Dashboard</Link>
                 }else{
                     return <Link key={idx} to={item.link} className='bg-zinc-800 text-white px-4 py-2 rounded-md border-2 border-blue-500 border-b-2 hover:border-b-0 hover:border-t-4 border-r-0 border-l-0'>{item.name}</Link>
                 }
@@ -40,6 +45,8 @@ const Navbar = () => {
                 {[{name:'Home', link:'/'}, {name:'Login', link:'/login'}, {name:'Vote Now', link:'/vote'}].map((item,idx)=>{
                     if (item.name != 'Vote Now'){
                         return <a key={idx} href={item.link} className='bg-zinc-600 text-white px-4 py-3 rounded-md border-2 border-blue-500 border-b-2 hover:border-b-0 hover:border-t-4 border-r-0 border-l-0 text-center'>{item.name}</a>
+                    }else if(user.loggedin && user.role === 'voter' && item.name === 'Login'){
+                        return <a key={idx} href={item.link} className='bg-zinc-800 text-white px-4 py-3 rounded-md border-2 border-blue-500 border-b-2 hover:border-b-0 hover:border-t-4 border-r-0 border-l-0 text-center'>Dashboard</a>
                     }else{
                         return <a key={idx} href={item.link} className='bg-zinc-800 text-white px-4 py-3 rounded-md border-2 border-blue-500 border-b-2 hover:border-b-0 hover:border-t-4 border-r-0 border-l-0 text-center'>{item.name}</a>
                     }
